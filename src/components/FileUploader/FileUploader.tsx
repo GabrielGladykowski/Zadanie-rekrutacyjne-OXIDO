@@ -9,7 +9,7 @@ interface FileUploaderProps {
   onFileLoad: (content: string) => void;
 }
 
-const FileUploader: React.FC<FileUploaderProps> = ({ onFileLoad }) => {
+const FileUploader = ({ onFileLoad }: FileUploaderProps) => {
   const fileInputRef = React.useRef<HTMLInputElement | null>(null);
 
   const handleFileRead = (element: React.ChangeEvent<HTMLInputElement>) => {

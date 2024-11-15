@@ -1,4 +1,4 @@
-const sendToOpenAI = async (articleContent: string): Promise<void> => {
+const sendToOpenAI = async (articleContent: string): Promise<string> => {
   const response = await fetch(`${import.meta.env.VITE_API_URL}`, {
     method: "POST",
     headers: {
@@ -34,11 +34,15 @@ const sendToOpenAI = async (articleContent: string): Promise<void> => {
 
   const blob = new Blob([generatedHtml], { type: "text/html" });
   const url = URL.createObjectURL(blob);
+
   const a = document.createElement("a");
   a.href = url;
   a.download = "article.html";
   a.click();
+
   URL.revokeObjectURL(url);
+
+  return generatedHtml;
 };
 
 export { sendToOpenAI };

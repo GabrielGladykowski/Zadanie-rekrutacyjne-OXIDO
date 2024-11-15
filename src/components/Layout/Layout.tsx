@@ -7,6 +7,7 @@ import ErrorMessage from "../ErrorMessage/ErrorMessage";
 
 const Layout: React.FC = () => {
   const [articleContent, setArticleContent] = useState<string>("");
+  const [generatedArticle, setGeneratedArticle] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -20,6 +21,8 @@ const Layout: React.FC = () => {
         setLoading={setLoading}
         setError={setError}
         loading={loading}
+        generatedArticle={generatedArticle}
+        setGeneratedArticle={setGeneratedArticle}
       />
       {error && <ErrorMessage error={error} />}
     </LayoutContainerStyled>
