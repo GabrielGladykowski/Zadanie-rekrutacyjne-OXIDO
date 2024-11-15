@@ -12,9 +12,9 @@ const sendToOpenAI = async (articleContent: string): Promise<string> => {
           role: "user",
           content: `
           Przekształć poniższy artykuł do formatu HTML, uwzględniając następujące wymagania:
-          1. Dodaj odpowiednie tagi HTML, takie jak <h1>, <h2>, <p>, <img> i inne.
+          1. Dodaj odpowiednie tagi HTML, takie jak <h1>, <h2>, <p>, <img> i inne, pamiętaj o zachowaniu nagłówków.
           2. W miejscach, gdzie warto dodać obrazy, użyj tagu <img> z atrybutem src.
-          3. Dodaj do każdego obrazka atrybut alt, zawierający dokładne polecenie (prompt), które można wykorzystać do wygenerowania obrazu za pomocą AI.
+          3. Dodaj do każdego obrazka atrybut alt, zawierający dokładne polecenie, które można wykorzystać do wygenerowania obrazu za pomocą AI.
           4. Umieść każdy obraz w tagu HTML <figure> i dodaj podpisy pod obrazami, korzystając z tagu <figcaption>. Podpisy powinny krótko opisywać treść obrazu w sposób zrozumiały dla użytkownika.
 
           Oto artykuł:
