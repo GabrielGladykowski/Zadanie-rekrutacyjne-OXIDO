@@ -1,26 +1,87 @@
 import React from "react";
 import { sendToOpenAI } from "../../api/openaiApi";
-import { GenerateButtonStyled } from "./GenerateButton.styled";
+import {
+  GenerateButtonContainerStyled,
+  GenerateButtonStyled,
+} from "./GenerateButton.styled";
 
 interface GenerateButtonProps {
   articleContent: string;
   setLoading: (loading: boolean) => void;
   setError: (error: string | null) => void;
   loading: boolean;
+  generatedArticle: string | null;
+  setGeneratedArticle: (content: string) => void;
 }
+
+const downloadFile = (fileName: string, content: string): void => {
+  const blob = new Blob([content], { type: "text/html" });
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = fileName;
+  link.click();
+};
+
+const createHtmlTemplate = (): string => {
+  return `<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Szablon Artykułu</title>
+  <style>
+    body { font-family: monospace; padding: 20px; }
+    h1 { color: #004bc8; font-size: 68px; }
+    p { color: #000000; font-size: 16px; }
+  </style>
+</head>
+<body>
+  <!-- Wklej tutaj treść artykułu -->
+
+  <script>
+    // Wklej tutaj kod JS
+  </script>
+</body>
+</html>`;
+};
+
+const createHtmlPreview = (articleContent: string): string => {
+  return `<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Podgląd Artykułu</title>
+  <style>
+    body { font-family: monospace; padding: 20px; }
+    h1 { color: #004bc8; font-size: 68px; }
+    h2 { color: #004bc8; font-size: 48px; }
+    p { color: #000000; font-size: 20px; }
+  </style>
+</head>
+<body>
+    ${articleContent}
+
+    <script></script>
+</body>
+</html>`;
+};
 
 const GenerateButton: React.FC<GenerateButtonProps> = ({
   articleContent,
   setLoading,
   setError,
   loading,
+  generatedArticle,
+  setGeneratedArticle,
 }) => {
-  const handleClick = async () => {
+  const handleGenerate = async () => {
     setLoading(true);
     setError(null);
 
     try {
-      await sendToOpenAI(articleContent);
+      const generatedHtml = await sendToOpenAI(articleContent);
+      setGeneratedArticle(generatedHtml);
       setLoading(false);
     } catch (error) {
       if (error instanceof Error) {
@@ -33,9 +94,27 @@ const GenerateButton: React.FC<GenerateButtonProps> = ({
   };
 
   return (
-    <GenerateButtonStyled onClick={handleClick} disabled={loading}>
-      {loading ? "Processing..." : "Generate HTML"}
-    </GenerateButtonStyled>
+    <GenerateButtonContainerStyled>
+      <GenerateButtonStyled onClick={handleGenerate} disabled={loading}>
+        {loading ? "Processing..." : "Generate HTML"}
+      </GenerateButtonStyled>
+
+      <GenerateButtonStyled
+        onClick={() => downloadFile("szablon.html", createHtmlTemplate())}
+      >
+        Pobierz Szablon HTML
+      </GenerateButtonStyled>
+
+      {generatedArticle && (
+        <GenerateButtonStyled
+          onClick={() =>
+            downloadFile("podglad.html", createHtmlPreview(generatedArticle))
+          }
+        >
+          Pobierz Podgląd HTML
+        </GenerateButtonStyled>
+      )}
+    </GenerateButtonContainerStyled>
   );
 };
 
