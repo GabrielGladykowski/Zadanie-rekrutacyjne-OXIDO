@@ -15,6 +15,8 @@ Aplikacja służy do generowania plików HTML na podstawie tekstu artykułu. Umo
    + Możesz pobrać `szablon.html` za pomocą przycisku **Download HTML Template**.
    + Przy generacji artykułu pojawi się przycisk **Download HTML Preview**, który pozwala na pobranie `podglad.html` z wklejonym tekstem w gotowym formacie.
 
+Pliki **artykuł w pliku tekstowym**, **artykul.html**, **szablon.html**, **podglad.html** znajdują się w **src/preview**.
+
 ## Instrukcja uruchomienia projektu lokalnie:
 
 ### 1. **Klonowanie repozytorium:**
