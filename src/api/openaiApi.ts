@@ -32,16 +32,6 @@ const sendToOpenAI = async (articleContent: string): Promise<string> => {
   const data = await response.json();
   const generatedHtml = data.choices[0].message.content;
 
-  const blob = new Blob([generatedHtml], { type: "text/html" });
-  const url = URL.createObjectURL(blob);
-
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = "article.html";
-  a.click();
-
-  URL.revokeObjectURL(url);
-
   return generatedHtml;
 };
 

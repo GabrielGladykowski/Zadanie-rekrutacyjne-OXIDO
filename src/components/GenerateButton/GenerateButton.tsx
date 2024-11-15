@@ -45,7 +45,14 @@ const createHtmlTemplate = (): string => {
 </html>`;
 };
 
+const extractBodyContent = (html: string): string => {
+  const bodyMatch = html.match(/<body[^>]*>([\s\S]*?)<\/body>/i);
+  return bodyMatch ? bodyMatch[1] : html;
+};
+
 const createHtmlPreview = (articleContent: string): string => {
+  const bodyContent = extractBodyContent(articleContent);
+
   return `<!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -60,9 +67,7 @@ const createHtmlPreview = (articleContent: string): string => {
   </style>
 </head>
 <body>
-    ${articleContent}
-
-    <script></script>
+  ${bodyContent}
 </body>
 </html>`;
 };
@@ -83,6 +88,8 @@ const GenerateButton = ({
       const generatedHtml = await sendToOpenAI(articleContent);
       setGeneratedArticle(generatedHtml);
       setLoading(false);
+
+      downloadFile("article.html", generatedHtml);
     } catch (error) {
       if (error instanceof Error) {
         setError(error.message);
