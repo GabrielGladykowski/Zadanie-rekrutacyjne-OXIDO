@@ -19,7 +19,7 @@ const FileUploaderButtonStyled = styled.button`
   border-radius: 5px;
   font-size: ${theme.fontSize.button};
   cursor: pointer;
-  transition: background-color 0.2s, color 0.2s;
+  transition: ${theme.transition.button};
 
   &:hover {
     background-color: ${theme.colors.secondary};
