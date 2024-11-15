@@ -13,19 +13,17 @@ Aplikacja służy do generowania plików HTML na podstawie tekstu artykułu. Umo
    + Po wklejeniu tekstu kliknij przycisk **Generate HTML**, aby wygenerować plik `artykul.html`. Plik zostanie automatycznie pobrany po zakończeniu generowania.
 3. **Pobieranie dodatkowych plików:**
    + Możesz pobrać `szablon.html` za pomocą przycisku **Download HTML Template**.
-   + Przy generacji artykułu pojawi się przycisk Download HTML Preview, który pozwala na pobranie `podglad.html` z wklejonym tekstem w gotowym formacie.
+   + Przy generacji artykułu pojawi się przycisk **Download HTML Preview**, który pozwala na pobranie `podglad.html` z wklejonym tekstem w gotowym formacie.
 
 ## Instrukcja uruchomienia projektu lokalnie:
 
 ### 1. **Klonowanie repozytorium:**
-1. Kliknij zielony przycisk **<> Code** w prawym górnym rogu.
-2. Skopiuj adres URL znajdujący się pod zakładką **HTTPS**.
-3. Otwórz terminal i sklonuj repozytorium, wpisując:
+1. Otwórz terminal i sklonuj repozytorium, wpisując:
 ```bash
-git clone <adres-URL-repozytorium>
+git clone https://github.com/GabrielGladykowski/Zadanie-rekrutacyjne-OXIDO.git
 ```
 
-### 2. **Instalacja zależności:**
+### 2. **Pobranie bibliotek:**
 1. Przejdź do głównego folderu projektu
 2. Zainstaluj wymagane zależności, uruchamiając:
 ```bash
@@ -36,7 +34,7 @@ npm install
 1. W głównym katalogu projektu stwórz plik `.env`:
 2. Otwórz plik .env i dodaj następujące linie:
 ```env
-VITE_OPENAI_API_KEY=<Twój_klucz_API_OpenAI>
+VITE_OPENAI_API_KEY=sk-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 VITE_API_URL=https://api.openai.com/v1/chat/completions
 ```
 > **Uwaga:** Upewnij się, że posiadasz aktywny klucz API OpenAI, który możesz uzyskać z [platformy OpenAI](https://platform.openai.com/).
