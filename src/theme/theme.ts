@@ -1,7 +1,7 @@
 export const theme = {
   colors: {
     primary: "#004bc8",
-    textOnPrimary: "#FFFFFF",
+    secondary: "#FFFFFF",
     error: "#FF0000",
     disabled: "#CCCCCC",
     border: "#CCCCCC",
@@ -10,5 +10,6 @@ export const theme = {
   fontSize: {
     h1: "68px",
     button: "20px",
+    text: "16px",
   },
 };
