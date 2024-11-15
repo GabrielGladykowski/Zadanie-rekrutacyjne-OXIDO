@@ -5,7 +5,7 @@ import ArticleEditor from "../ArticleEditor/ArticleEditor";
 import GenerateButton from "../GenerateButton/GenerateButton";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 
-const Layout: React.FC = () => {
+const Layout = () => {
   const [articleContent, setArticleContent] = useState<string>("");
   const [generatedArticle, setGeneratedArticle] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);

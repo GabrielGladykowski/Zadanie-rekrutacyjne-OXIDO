@@ -6,7 +6,7 @@ interface ArticleEditorProps {
   onChange: (content: string) => void;
 }
 
-const ArticleEditor: React.FC<ArticleEditorProps> = ({ content, onChange }) => {
+const ArticleEditor = ({ content, onChange }: ArticleEditorProps) => {
   return (
     <ArticleEditorTextAreaStyled
       value={content}

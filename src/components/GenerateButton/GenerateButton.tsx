@@ -67,14 +67,14 @@ const createHtmlPreview = (articleContent: string): string => {
 </html>`;
 };
 
-const GenerateButton: React.FC<GenerateButtonProps> = ({
+const GenerateButton = ({
   articleContent,
   setLoading,
   setError,
   loading,
   generatedArticle,
   setGeneratedArticle,
-}) => {
+}: GenerateButtonProps) => {
   const handleGenerate = async () => {
     setLoading(true);
     setError(null);
@@ -102,7 +102,7 @@ const GenerateButton: React.FC<GenerateButtonProps> = ({
       <GenerateButtonStyled
         onClick={() => downloadFile("szablon.html", createHtmlTemplate())}
       >
-        Pobierz Szablon HTML
+        Download HTML Template
       </GenerateButtonStyled>
 
       {generatedArticle && (
@@ -111,7 +111,7 @@ const GenerateButton: React.FC<GenerateButtonProps> = ({
             downloadFile("podglad.html", createHtmlPreview(generatedArticle))
           }
         >
-          Pobierz Podgląd HTML
+          Download HTML Preview
         </GenerateButtonStyled>
       )}
     </GenerateButtonContainerStyled>
