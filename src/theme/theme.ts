@@ -12,4 +12,8 @@ export const theme = {
     button: "20px",
     text: "16px",
   },
+
+  transition: {
+    button: "background-color 0.2s, color 0.2s",
+  },
 };
