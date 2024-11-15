@@ -1,50 +1,55 @@
-# React + TypeScript + Vite
+# Zadanie Rekrutacyjne OXIMO
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplikacja służy do generowania plików HTML na podstawie tekstu artykułu. Umożliwia pobranie:
++ **artykul.html** - plik HTML zawierający wklejony tekst w gotowym formacie.
++ **szablon.html** - pusty szablon HTML do dalszego wykorzystania.
++ **podglad.html** - podglądowy plik HTML z osadzonym szablonem.
 
-Currently, two official plugins are available:
+## Jak to działa:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. **Wklejanie artykułu lub przesyłanie pliku:**
+   + Możesz wgrać plik z artykułem za pomocą przycisku **Upload File** lub wkleić tekst artykułu w odpowiednie pole tekstowe.
+2. **Generowanie pliku HTML:**
+   + Po wklejeniu tekstu kliknij przycisk **Generate HTML**, aby wygenerować plik `artykul.html`. Plik zostanie automatycznie pobrany po zakończeniu generowania.
+3. **Pobieranie dodatkowych plików:**
+   + Możesz pobrać `szablon.html` za pomocą przycisku **Download HTML Template**.
+   + Przy generacji artykułu pojawi się przycisk Download HTML Preview, który pozwala na pobranie `podglad.html` z wklejonym tekstem w gotowym formacie.
 
-## Expanding the ESLint configuration
+## Instrukcja uruchomienia projektu lokalnie:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+### 1. **Klonowanie repozytorium:**
+1. Kliknij zielony przycisk **<> Code** w prawym górnym rogu.
+2. Skopiuj adres URL znajdujący się pod zakładką **HTTPS**.
+3. Otwórz terminal i sklonuj repozytorium, wpisując:
+```bash
+git clone <adres-URL-repozytorium>
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+### 2. **Instalacja zależności:**
+1. Przejdź do głównego folderu projektu
+2. Zainstaluj wymagane zależności, uruchamiając:
+```bash
+npm install
 ```
+
+### 3. **Konfiguracja pliku `.env`:**
+1. W głównym katalogu projektu stwórz plik `.env`:
+2. Otwórz plik .env i dodaj następujące linie:
+```env
+VITE_OPENAI_API_KEY=<Twój_klucz_API_OpenAI>
+VITE_API_URL=https://api.openai.com/v1/chat/completions
+```
+> **Uwaga:** Upewnij się, że posiadasz aktywny klucz API OpenAI, który możesz uzyskać z [platformy OpenAI](https://platform.openai.com/).
+
+### 4. **Uruchomienie projektu:**
+1. W terminalu wpisz:
+```bash
+npm run dev
+```
+2. Po uruchomieniu projektu w terminalu pojawi się link do lokalnego serwera.
+3. Kliknij w link, przytrzymując **Ctrl** (lub **Cmd** na Macu), aby otworzyć aplikację w przeglądarce.
+
+## Technologie:
++ Vite + React + TypeScript
++ OpenAI API
++ Styled-component
